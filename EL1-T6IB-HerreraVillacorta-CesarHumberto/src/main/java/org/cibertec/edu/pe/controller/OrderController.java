@@ -1,5 +1,6 @@
 package org.cibertec.edu.pe.controller;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -43,6 +44,9 @@ public class OrderController {
 	public String addToCart(@PathVariable Long productId, Model m) {
 		Product p = productService.search(productId).get();
 		OrderItem item = new OrderItem();
+		item.setDiscount(new BigDecimal(0));
+		item.setQuantity(new BigDecimal(1));
+		item.setSubtotal(p.getPrice());
 		item.setProduct(p);
 		if(!orderService.isContaining(productId, orderItems)) orderItems.add(item);
 		return "redirect:/list";

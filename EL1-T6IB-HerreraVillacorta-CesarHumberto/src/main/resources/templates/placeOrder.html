@@ -24,10 +24,13 @@
 						<tbody>
 							<tr th:each="item, itemStat : *{orderItems}">
 								<td th:text="${itemStat.index+1}"></td>
-								<td th:text="*{item.product.name}"></td>
+								<td>
+									<p th:text="*{item.product.name}" class="text-center"></p>
+									<img th:src="*{item.product.imageUrl}" width="fit-content" class="rounded mx-auto d-block">
+								</td>
 								<td th:text="*{item.product.description}"></td>
 								<td th:text="*{item.product.price}"></td>
-								<td th:text="*{item.product.productId}"></td>
+								<td th:text="*{item.quantity}"></td>
 								<td th:text="*{item.product.price}"></td>
 								<td>
 									<a th:href="@{/order/removeFromCart/}+*{itemStat.index}">Eliminar</a>
@@ -61,7 +64,7 @@
 								</div>
 							</div>
 							<div class="card-footer">
-								<input type="submit" value="Actualizar el carrito" class="btn btn-danger w-100">
+								<input type="submit" value="Actualizar el carrito" class="btn btn-danger w-100" disabled>
 								<input type="submit" value="Realiza Pago y registra" class="btn btn-success w-100 mt-2">
 							</div>
 						</div>

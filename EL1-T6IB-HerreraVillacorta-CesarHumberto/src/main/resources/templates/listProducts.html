@@ -7,7 +7,7 @@
 	<body>
 		<div class="container mt-4">
 			<h1>DESARROLLO DE APLICACIONES WEB - CL01</h1>
-			<a th:href="@{/create}" class="btn btn-primary">Register</a>
+			<a th:href="@{/createSampleProducts}" class="btn btn-primary">Create Sample Products</a>
 			<div class="row">
 				<div th:each="reg:${productList}" class="col-4">				
 				<div class="card">
@@ -17,12 +17,6 @@
 					<div class="card-body">
 						<p th:text="'$ '+${reg.price}"></p>
 						<img th:src="${reg.imageUrl}" width="fit-content" class="rounded mx-auto d-block">
-						<i class="bi bi-cart4"></i>
-						<span class="bi-search"></span> 
-						<i class="fa-solid fa-cart-shopping"></i>
-						<span class="fa-solid fa-cart-arrow-down"></span>
-						<i class="fa-light fa-cart-shopping"></i>
-						<i class="fa-solid fa-user"></i>
 					</div>
 					<div class="card-footer">
 						<label th:text="${reg.description}" class="mb-2"></label>

@@ -41,6 +41,13 @@ public class ProductController {
 		return "productForm";
 	}
 	
+	@GetMapping("/createSampleProducts")
+	public String createSampleProducts(Model m) {
+		List<Product> products = service.createSampleProducts();
+		products.forEach(product-> service.save(product));
+		return "redirect:/list";
+	}
+	
 	@PostMapping("/save")
 	public String save(@Validated Product p, Model m) {
 		service.save(p);

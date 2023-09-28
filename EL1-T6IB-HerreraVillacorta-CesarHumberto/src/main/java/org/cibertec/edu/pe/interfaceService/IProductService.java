@@ -10,4 +10,5 @@ public interface IProductService {
 	public Optional<Product> search(Long productId);
 	public int save(Product p);
 	public void delete(Long productId);
+	public List<Product> createSampleProducts();
 }
