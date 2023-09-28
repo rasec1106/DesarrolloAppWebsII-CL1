@@ -30,9 +30,9 @@
 						<td th:text="${reg.description}"></td>
 						<td th:text="${reg.price}"></td>
 						<td>
-							<a th:href="@{/search}+${reg.id}" class="btn btn-danger">Ver</a>
-							<a th:href="@{/update}+${reg.id}" class="btn btn-danger">Editar</a>
-							<a th:href="@{/delete}+${reg.id}" class="btn btn-danger">Eliminar</a>
+							<a th:href="@{/search/}+${reg.id}" class="btn btn-danger">Ver</a>
+							<a th:href="@{/update/}+${reg.id}" class="btn btn-danger">Editar</a>
+							<a th:href="@{/delete/}+${reg.id}" class="btn btn-danger">Eliminar</a>
 						</td>
 					</tr>
 				</tbody>
