@@ -1,6 +1,6 @@
 package org.cibertec.edu.pe.service;
 
-import java.util.Optional;
+import java.util.Set;
 
 import org.cibertec.edu.pe.interfaceService.IOrderService;
 import org.cibertec.edu.pe.interfaces.IOrder;
@@ -16,25 +16,12 @@ public class OrderService implements IOrderService {
 	private IOrder data;
 	
 	@Override
-	public int placeOrder(Order order) {
+	public int save(Order order, Set<OrderItem> orderItems) {
 		int hasSaved = 0;
+		orderItems.forEach(orderItem -> order.addOrderItem(orderItem));
 		Order dbOrder = data.save(order);
 		if(!dbOrder.equals(null)) hasSaved = -1;
 		return hasSaved;
-	}
-
-	@Override
-	public void addOrderItem(Long orderId, OrderItem orderItem) {
-		Optional<Order> order = search(orderId);
-		if(!order.equals(null)) {
-			Order o = order.get();
-			o.addOrderItem(orderItem);
-		}
-	}
-
-	@Override
-	public Optional<Order> search(Long orderId) {
-		return data.findById(orderId);
 	}
 
 }

@@ -12,8 +12,10 @@ import org.cibertec.edu.pe.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -30,6 +32,7 @@ public class OrderController {
 	@GetMapping("/placeOrder")
 	public String placeOrder(Model m) {
 		m.addAttribute("orderItems", orderItems);
+		m.addAttribute("order", new Order());
 		return "placeOrder";
 	}
 	
@@ -40,6 +43,12 @@ public class OrderController {
 		item.setProduct(p);
 		if(orderItems == null) orderItems = new HashSet<>();
 		orderItems.add(item);
+		return "redirect:/list";
+	}
+	
+	@PostMapping("/purchase")
+	public String save(@Validated Order order, Model m) {
+		orderService.save(order, orderItems);
 		return "redirect:/list";
 	}
 }
