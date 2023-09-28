@@ -40,7 +40,7 @@ public class ProductController {
 	@GetMapping("/create")
 	public String create(Model m) {
 		m.addAttribute("product", new Product());
-		return "createNewProduct";
+		return "productForm";
 	}
 	
 	@PostMapping("/save")
@@ -53,7 +53,7 @@ public class ProductController {
 	public String update(@PathVariable String id, Model m) {
 		Optional<Product> p = service.search(id);
 		m.addAttribute("product", p);
-		return "updateProduct";
+		return "productForm";
 	}
 	
 	@GetMapping("/delete")
