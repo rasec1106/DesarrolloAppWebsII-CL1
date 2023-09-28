@@ -1,27 +1,33 @@
 package org.cibertec.edu.pe.model;
 
+import javax.persistence.Embeddable;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="product")
+@Embeddable // to embed it into OrderItem
 public class Product {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String id;
 	private String name;
 	private String description;
+	private String imageUrl;
 	private double price;
 	
 	public Product() {
 		super();
 	}
 
-	public Product(String id, String name, String description, double price) {
+	public Product(String id, String name, String description, String imageUrl, double price) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.description = description;
+		this.imageUrl = imageUrl;
 		this.price = price;
 	}
 
@@ -55,6 +61,14 @@ public class Product {
 
 	public void setPrice(double price) {
 		this.price = price;
+	}
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 	
 }
