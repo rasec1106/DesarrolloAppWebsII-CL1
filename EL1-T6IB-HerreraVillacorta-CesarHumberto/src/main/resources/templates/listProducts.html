@@ -7,7 +7,7 @@
 	<body>
 		<div class="container mt-4">
 			<h1>DESARROLLO DE APLICACIONES WEB - CL01</h1>
-			<a class="btn btn-primary">Register</a>
+			<a th:href="@{/create}" class="btn btn-primary">Register</a>
 			<table class="table">
 				<thead>
 					<tr>
@@ -30,7 +30,9 @@
 						<td th:text="${reg.description}"></td>
 						<td th:text="${reg.price}"></td>
 						<td>
-							<a class="btn btn-danger">Eliminar</a>
+							<a th:href="@{/search}+${reg.id}" class="btn btn-danger">Ver</a>
+							<a th:href="@{/update}+${reg.id}" class="btn btn-danger">Editar</a>
+							<a th:href="@{/delete}+${reg.id}" class="btn btn-danger">Eliminar</a>
 						</td>
 					</tr>
 				</tbody>
