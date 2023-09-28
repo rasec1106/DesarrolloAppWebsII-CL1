@@ -9,11 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -30,9 +28,9 @@ public class ProductController {
 		return "listProducts";
 	}
 	
-	@GetMapping("/search/{id}")
-	public String search(@PathVariable String id, Model m) {
-		Optional<Product> p = service.search(id);
+	@GetMapping("/search/{productId}")
+	public String search(@PathVariable Long productId, Model m) {
+		Optional<Product> p = service.search(productId);
 		m.addAttribute("product", p);
 		return "searchProductById";
 	}
@@ -49,16 +47,16 @@ public class ProductController {
 		return "redirect:/list";
 	}
 	
-	@GetMapping("/update/{id}")
-	public String update(@PathVariable String id, Model m) {
-		Optional<Product> p = service.search(id);
+	@GetMapping("/update/{productId}")
+	public String update(@PathVariable Long productId, Model m) {
+		Optional<Product> p = service.search(productId);
 		m.addAttribute("product", p);
 		return "productForm";
 	}
 	
-	@GetMapping("/delete/{id}")
-	public String delete(@PathVariable String id, Model m) {
-		service.delete(id);
+	@GetMapping("/delete/{productId}")
+	public String delete(@PathVariable Long productId, Model m) {
+		service.delete(productId);
 		return "redirect:/list";
 	}
 }

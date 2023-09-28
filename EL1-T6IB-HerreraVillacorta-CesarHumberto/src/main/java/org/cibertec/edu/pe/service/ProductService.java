@@ -21,8 +21,8 @@ public class ProductService implements IProductService {
 	}
 
 	@Override
-	public Optional<Product> search(String id) {
-		return data.findById(id);
+	public Optional<Product> search(Long productId) {
+		return data.findById(productId);
 	}
 
 	@Override
@@ -34,8 +34,8 @@ public class ProductService implements IProductService {
 	}
 
 	@Override
-	public void delete(String id) {
-		data.deleteById(id);		
+	public void delete(Long productId) {
+		data.deleteById(productId);		
 	}
 
 }

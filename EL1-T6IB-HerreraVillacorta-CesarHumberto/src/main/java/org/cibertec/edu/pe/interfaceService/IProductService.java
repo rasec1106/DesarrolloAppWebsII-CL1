@@ -7,7 +7,7 @@ import org.cibertec.edu.pe.model.Product;
 
 public interface IProductService {
 	public List<Product> list();
-	public Optional<Product> search(String id);
+	public Optional<Product> search(Long productId);
 	public int save(Product p);
-	public void delete(String id);
+	public void delete(Long productId);
 }
