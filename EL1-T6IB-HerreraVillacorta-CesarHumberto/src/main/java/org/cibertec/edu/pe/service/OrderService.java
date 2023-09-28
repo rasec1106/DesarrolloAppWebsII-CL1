@@ -1,5 +1,6 @@
 package org.cibertec.edu.pe.service;
 
+import java.math.BigDecimal;
 import java.util.Set;
 
 import org.cibertec.edu.pe.interfaceService.IOrderService;
@@ -22,6 +23,16 @@ public class OrderService implements IOrderService {
 		Order dbOrder = data.save(order);
 		if(!dbOrder.equals(null)) hasSaved = -1;
 		return hasSaved;
+	}
+	
+	@Override
+	public Order calculate(Order order) {
+		order.setDeliveryCost(new BigDecimal(0));
+		order.setDiscount(new BigDecimal(0));
+		order.setProductCost(new BigDecimal(0));
+		order.getOrderItems().forEach(item -> order.setProductCost(item.getProduct().getPrice().add(order.getProductCost())));
+		order.setTotalAmount(order.getProductCost().add(order.getDeliveryCost()).subtract(order.getDiscount()));
+		return order;
 	}
 
 }

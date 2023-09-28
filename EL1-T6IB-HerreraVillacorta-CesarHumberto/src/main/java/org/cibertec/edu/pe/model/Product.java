@@ -1,5 +1,7 @@
 package org.cibertec.edu.pe.model;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,13 +16,13 @@ public class Product {
 	private String name;
 	private String description;
 	private String imageUrl;
-	private double price;
+	private BigDecimal price;
 	
 	public Product() {
 		super();
 	}
 
-	public Product(Long productId, String name, String description, String imageUrl, double price) {
+	public Product(Long productId, String name, String description, String imageUrl, BigDecimal price) {
 		super();
 		this.productId = productId;
 		this.name = name;
@@ -53,11 +55,11 @@ public class Product {
 		this.description = description;
 	}
 
-	public double getPrice() {
+	public BigDecimal getPrice() {
 		return price;
 	}
 
-	public void setPrice(double price) {
+	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
 

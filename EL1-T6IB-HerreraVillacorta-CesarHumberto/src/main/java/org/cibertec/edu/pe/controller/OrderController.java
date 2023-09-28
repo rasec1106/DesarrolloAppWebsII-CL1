@@ -1,5 +1,6 @@
 package org.cibertec.edu.pe.controller;
 
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -27,12 +28,15 @@ public class OrderController {
 	@Autowired
 	private IProductService productService;
 	
-	private Set<OrderItem> orderItems;
+	private Set<OrderItem> orderItems = new HashSet<>();
 	
 	@GetMapping("/placeOrder")
 	public String placeOrder(Model m) {
 		m.addAttribute("orderItems", orderItems);
-		m.addAttribute("order", new Order());
+		Order order = new Order();
+		order.setOrderItems(orderItems);
+		order = orderService.calculate(order);
+		m.addAttribute("order", order);
 		return "placeOrder";
 	}
 	
@@ -41,14 +45,14 @@ public class OrderController {
 		Product p = productService.search(productId).get();
 		OrderItem item = new OrderItem();
 		item.setProduct(p);
-		if(orderItems == null) orderItems = new HashSet<>();
 		orderItems.add(item);
 		return "redirect:/list";
 	}
 	
 	@PostMapping("/purchase")
-	public String save(@Validated Order order, Model m) {
-		orderService.save(order, orderItems);
+	public String purchase(@Validated Order order, Model m) {
+		int hasSaved = orderService.save(order, order.getOrderItems());
+		if(hasSaved == 0) orderItems.clear();
 		return "redirect:/list";
 	}
 }
