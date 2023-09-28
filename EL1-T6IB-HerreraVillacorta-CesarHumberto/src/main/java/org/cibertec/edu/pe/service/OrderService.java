@@ -21,7 +21,7 @@ public class OrderService implements IOrderService {
 		int hasSaved = 0;
 		orderItems.forEach(orderItem -> order.addOrderItem(orderItem));
 		Order dbOrder = data.save(order);
-		if(!dbOrder.equals(null)) hasSaved = -1;
+		if(!dbOrder.equals(null)) hasSaved = 1;
 		return hasSaved;
 	}
 	

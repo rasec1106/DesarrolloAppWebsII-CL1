@@ -29,7 +29,7 @@ public class ProductService implements IProductService {
 	public int save(Product p) {
 		int hasSaved = 0;
 		Product dbProduct = data.save(p);
-		if(!dbProduct.equals(null)) hasSaved = -1;
+		if(!dbProduct.equals(null)) hasSaved = 1;
 		return hasSaved;
 	}
 

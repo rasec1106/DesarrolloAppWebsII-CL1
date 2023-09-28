@@ -1,6 +1,7 @@
 package org.cibertec.edu.pe.controller;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -49,10 +50,21 @@ public class OrderController {
 		return "redirect:/list";
 	}
 	
+	@GetMapping("/removeFromCart/{productId}")
+	public String removeFromCart(@PathVariable Long productId, Model m) {
+		Product p = productService.search(productId).get();
+		OrderItem item = new OrderItem();
+		item.setProduct(p);
+		orderItems.remove(item);
+		return "redirect:/placeOrder";
+	}
+	
 	@PostMapping("/purchase")
 	public String purchase(@Validated Order order, Model m) {
-		int hasSaved = orderService.save(order, order.getOrderItems());
-		if(hasSaved == 0) orderItems.clear();
+		order.setOrderDate(new Date());
+		int hasSaved = orderService.save(order, orderItems);
+		System.out.println("SAVE"+ hasSaved);
+		if(hasSaved == 1) orderItems.clear();
 		return "redirect:/list";
 	}
 }
