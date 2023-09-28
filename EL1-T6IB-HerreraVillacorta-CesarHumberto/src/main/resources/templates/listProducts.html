@@ -8,34 +8,6 @@
 		<div class="container mt-4">
 			<h1>DESARROLLO DE APLICACIONES WEB - CL01</h1>
 			<a th:href="@{/create}" class="btn btn-primary">Register</a>
-			<table class="table">
-				<thead>
-					<tr>
-						<th>Item</th>
-						<th>Articulo</th>
-						<th>Descripcion</th>
-						<th>Precio</th>
-						<th>Cantidad</th>
-						<th>Total</th>
-						<th>Acciones</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="reg:${productList}">
-						<td th:text="${reg.productId}"></td>
-						<td th:text="${reg.name}"></td>
-						<td th:text="${reg.description}"></td>
-						<td th:text="${reg.price}"></td>
-						<td th:text="${reg.productId}"></td>
-						<td th:text="${reg.price}"></td>
-						<td>
-							<a th:href="@{/search/}+${reg.productId}" class="btn btn-success">Ver</a>
-							<a th:href="@{/update/}+${reg.productId}" class="btn btn-warning">Editar</a>
-							<a th:href="@{/delete/}+${reg.productId}" class="btn btn-danger">Eliminar</a>
-						</td>
-					</tr>
-				</tbody>
-			</table>
 			<div class="row">
 				<div th:each="reg:${productList}" class="col-4">				
 				<div class="card">

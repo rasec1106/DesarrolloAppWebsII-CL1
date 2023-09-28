@@ -34,5 +34,17 @@ public class OrderService implements IOrderService {
 		order.setTotalAmount(order.getProductCost().add(order.getDeliveryCost()).subtract(order.getDiscount()));
 		return order;
 	}
+	
+	@Override
+	public boolean isContaining(Long productId, Set<OrderItem> orderItems) {
+		boolean isAlreadyContained = false;
+		for(OrderItem item:orderItems) {
+			if(item.getProduct().getProductId() == productId) {
+				isAlreadyContained = true;
+				break;
+			}
+		}
+		return isAlreadyContained;
+	}
 
 }

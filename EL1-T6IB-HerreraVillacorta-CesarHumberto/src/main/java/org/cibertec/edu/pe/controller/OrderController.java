@@ -1,13 +1,11 @@
 package org.cibertec.edu.pe.controller;
 
-import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 import org.cibertec.edu.pe.interfaceService.IOrderService;
 import org.cibertec.edu.pe.interfaceService.IProductService;
-import org.cibertec.edu.pe.interfaces.IProduct;
 import org.cibertec.edu.pe.model.Order;
 import org.cibertec.edu.pe.model.OrderItem;
 import org.cibertec.edu.pe.model.Product;
@@ -46,17 +44,15 @@ public class OrderController {
 		Product p = productService.search(productId).get();
 		OrderItem item = new OrderItem();
 		item.setProduct(p);
-		orderItems.add(item);
+		if(!orderService.isContaining(productId, orderItems)) orderItems.add(item);
 		return "redirect:/list";
 	}
 	
-	@GetMapping("/removeFromCart/{productId}")
-	public String removeFromCart(@PathVariable Long productId, Model m) {
-		Product p = productService.search(productId).get();
-		OrderItem item = new OrderItem();
-		item.setProduct(p);
+	@GetMapping("/removeFromCart/{index}")
+	public String removeFromCart(@PathVariable int index, Model m) {
+		OrderItem item = (OrderItem)orderItems.toArray()[index];
 		orderItems.remove(item);
-		return "redirect:/placeOrder";
+		return "redirect:/order/placeOrder";
 	}
 	
 	@PostMapping("/purchase")

@@ -8,4 +8,5 @@ import org.cibertec.edu.pe.model.OrderItem;
 public interface IOrderService {
 	public int save(Order order, Set<OrderItem> orderItems);
 	public Order calculate(Order order);
+	public boolean isContaining(Long productId, Set<OrderItem> orderItems);
 }
