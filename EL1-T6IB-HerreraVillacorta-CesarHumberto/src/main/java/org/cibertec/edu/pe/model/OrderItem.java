@@ -9,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -21,6 +20,7 @@ public class OrderItem {
 	@OneToOne
 	@JoinColumn(name="productId")
 	private Product product;
+	private BigDecimal quantity;
 	private BigDecimal discount;
 	private BigDecimal subtotal;
 	@ManyToOne
@@ -31,13 +31,14 @@ public class OrderItem {
 		super();
 	}
 
-	public OrderItem(Long orderItemId, Product product, BigDecimal discount, BigDecimal subtotal, Order order) {
+	public OrderItem(Long orderItemId, Product product, BigDecimal discount, BigDecimal subtotal, Order order, BigDecimal quantity) {
 		super();
 		this.orderItemId = orderItemId;
 		this.product = product;
 		this.discount = discount;
 		this.subtotal = subtotal;
 		this.order = order;
+		this.quantity = quantity;
 	}
 
 	public Long getOrderItemId() {
@@ -78,6 +79,14 @@ public class OrderItem {
 
 	public void setOrder(Order order) {
 		this.order = order;
+	}
+
+	public BigDecimal getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(BigDecimal quantity) {
+		this.quantity = quantity;
 	}
 
 }
