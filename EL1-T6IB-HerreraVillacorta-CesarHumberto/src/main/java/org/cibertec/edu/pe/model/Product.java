@@ -5,14 +5,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 @Entity
-@Embeddable // to embed it into OrderItem
 public class Product {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private String id;
+	private Long productId;
 	private String name;
 	private String description;
 	private String imageUrl;
@@ -22,21 +20,21 @@ public class Product {
 		super();
 	}
 
-	public Product(String id, String name, String description, String imageUrl, double price) {
+	public Product(Long productId, String name, String description, String imageUrl, double price) {
 		super();
-		this.id = id;
+		this.productId = productId;
 		this.name = name;
 		this.description = description;
 		this.imageUrl = imageUrl;
 		this.price = price;
 	}
 
-	public String getId() {
-		return id;
+	public Long getProductId() {
+		return productId;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setProductId(Long productId) {
+		this.productId = productId;
 	}
 
 	public String getName() {

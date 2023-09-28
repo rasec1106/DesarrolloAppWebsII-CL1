@@ -1,5 +1,6 @@
 package org.cibertec.edu.pe.model;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -16,16 +17,16 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@Entity
+@Entity(name="Orders")
 public class Order {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long orderId;
 	private Date orderDate;
-	private double productCost;
-	private double deliveryCost;
-	private double discount;
-	private double totalAmount;
+	private BigDecimal productCost;
+	private BigDecimal deliveryCost;
+	private BigDecimal discount;
+	private BigDecimal totalAmount;
 	@OneToMany(mappedBy = "order" // name of the VARIABLE in the child class
             ,cascade = CascadeType.ALL) // to save also the into the child db
     private Set<OrderItem> orderItems;
@@ -42,8 +43,8 @@ public class Order {
 		super();
 	}
 
-	public Order(Long orderId, Date orderDate, double productCost, double deliveryCost, double discount,
-			double totalAmount, Set<OrderItem> orderItems) {
+	public Order(Long orderId, Date orderDate, BigDecimal productCost, BigDecimal deliveryCost, BigDecimal discount,
+			BigDecimal totalAmount, Set<OrderItem> orderItems) {
 		super();
 		this.orderId = orderId;
 		this.orderDate = orderDate;
@@ -70,35 +71,35 @@ public class Order {
 		this.orderDate = orderDate;
 	}
 
-	public double getProductCost() {
+	public BigDecimal getProductCost() {
 		return productCost;
 	}
 
-	public void setProductCost(double productCost) {
+	public void setProductCost(BigDecimal productCost) {
 		this.productCost = productCost;
 	}
 
-	public double getDeliveryCost() {
+	public BigDecimal getDeliveryCost() {
 		return deliveryCost;
 	}
 
-	public void setDeliveryCost(double deliveryCost) {
+	public void setDeliveryCost(BigDecimal deliveryCost) {
 		this.deliveryCost = deliveryCost;
 	}
 
-	public double getDiscount() {
+	public BigDecimal getDiscount() {
 		return discount;
 	}
 
-	public void setDiscount(double discount) {
+	public void setDiscount(BigDecimal discount) {
 		this.discount = discount;
 	}
 
-	public double getTotalAmount() {
+	public BigDecimal getTotalAmount() {
 		return totalAmount;
 	}
 
-	public void setTotalAmount(double totalAmount) {
+	public void setTotalAmount(BigDecimal totalAmount) {
 		this.totalAmount = totalAmount;
 	}
 

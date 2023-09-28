@@ -1,5 +1,7 @@
 package org.cibertec.edu.pe.model;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,25 +9,29 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class OrderItem {
+	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long orderItemId;
-	@Embedded // to tell hibernate that it should see the product class
+	@OneToOne
+	@JoinColumn(name="productId")
 	private Product product;
-	private double discount;
-	private double subtotal;
+	private BigDecimal discount;
+	private BigDecimal subtotal;
 	@ManyToOne
-	@JoinColumn(name="orderId") //name of the COLUMN in the db table - not the class
+	@JoinColumn(name="orderId")
 	private Order order;
 	
 	public OrderItem() {
 		super();
 	}
 
-	public OrderItem(Long orderItemId, Product product, double discount, double subtotal, Order order) {
+	public OrderItem(Long orderItemId, Product product, BigDecimal discount, BigDecimal subtotal, Order order) {
 		super();
 		this.orderItemId = orderItemId;
 		this.product = product;
@@ -50,19 +56,19 @@ public class OrderItem {
 		this.product = product;
 	}
 
-	public double getDiscount() {
+	public BigDecimal getDiscount() {
 		return discount;
 	}
 
-	public void setDiscount(double discount) {
+	public void setDiscount(BigDecimal discount) {
 		this.discount = discount;
 	}
 
-	public double getSubtotal() {
+	public BigDecimal getSubtotal() {
 		return subtotal;
 	}
 
-	public void setSubtotal(double subtotal) {
+	public void setSubtotal(BigDecimal subtotal) {
 		this.subtotal = subtotal;
 	}
 
