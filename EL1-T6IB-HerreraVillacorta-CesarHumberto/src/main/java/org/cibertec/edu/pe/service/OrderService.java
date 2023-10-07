@@ -30,7 +30,7 @@ public class OrderService implements IOrderService {
 		order.setDeliveryCost(new BigDecimal(0));
 		order.setDiscount(new BigDecimal(0));
 		order.setProductCost(new BigDecimal(0));
-		order.getOrderItems().forEach(item -> order.setProductCost(item.getProduct().getPrice().add(order.getProductCost())));
+		order.getOrderItems().forEach(item -> order.setProductCost(order.getProductCost().add(item.getProduct().getPrice().multiply(item.getQuantity()))));
 		order.setTotalAmount(order.getProductCost().add(order.getDeliveryCost()).subtract(order.getDiscount()));
 		return order;
 	}

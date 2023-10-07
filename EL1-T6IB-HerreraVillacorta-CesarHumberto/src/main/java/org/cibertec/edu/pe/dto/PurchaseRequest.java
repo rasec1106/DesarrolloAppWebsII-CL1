@@ -1,5 +1,6 @@
 package org.cibertec.edu.pe.dto;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import org.cibertec.edu.pe.model.Order;
@@ -11,6 +12,8 @@ public class PurchaseRequest {
     
 	public PurchaseRequest() {
 		super();
+		this.order = new Order();
+		this.orderItems = new HashSet<OrderItem>();
 	}
 
 	public PurchaseRequest(Order order, Set<OrderItem> orderItems) {
