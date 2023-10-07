@@ -39,7 +39,7 @@ public class OrderController {
 	public String placeOrder(Model m) {
 		PurchaseRequest purchase = (PurchaseRequest) m.getAttribute("purchaseRequest");
 		Set<OrderItem> orderItems = purchase.getOrderItems();		
-		Order order = purchase.getOrder();
+		Order order = new Order();
 		order.setOrderItems(orderItems);
 		order = orderService.calculate(order);
 		purchase.setOrder(order);
